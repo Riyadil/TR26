@@ -1,4 +1,4 @@
-# Security Desk UI
+# Security Desk
 
 This is the browser prototype for the CSC 4402 Cybersecurity Incident and Vulnerability Tracking System. The download uses the same HTML, CSS, and JavaScript as the hosted prototype.
 
