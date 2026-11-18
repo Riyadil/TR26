@@ -1,178 +1,1367 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Security Desk</title>
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono&display=swap');
-*{box-sizing:border-box}body{margin:0;color:#172334;background:#f4f7f9;font:14px Inter,system-ui,sans-serif}button,input,select{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid #23a994;outline-offset:3px}.layout{display:grid;grid-template-columns:225px minmax(0,1fr);min-height:100vh}aside{background:#101e2b;color:#aab8c5;padding:32px 16px;display:flex;flex-direction:column;gap:7px}.brand{display:flex;align-items:center;gap:11px;color:white;font-weight:700;font-size:17px;margin:0 8px 35px}.mark{display:grid;place-items:center;background:#34d6b2;color:#102b2d;width:36px;height:36px;border-radius:10px;font-size:24px}nav{display:grid;gap:6px}nav button{border:0;text-align:left;border-radius:7px;background:transparent;color:inherit;padding:11px 12px;font-weight:500}nav button:hover,nav button[aria-current=page]{background:#203749;color:#7ae8cc}nav span{display:inline-block;width:26px}.sidefoot{margin-top:auto;padding:24px 9px 0;font-size:12px;color:#afc5d2}.dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#28ba98;margin-right:7px}.top{background:white;border-bottom:1px solid #e0e7eb;padding:17px 32px;display:flex;justify-content:space-between;align-items:center}.avatar{border-radius:50%;background:#d9f5ec;color:#125e52;padding:8px 9px;font-weight:700}.content{max-width:1450px;margin:auto;padding:32px}.hero{background:#122b3b;color:white;border-radius:14px;padding:28px 32px;margin-bottom:24px;display:flex;align-items:center;justify-content:space-between;gap:16px;background-image:radial-gradient(ellipse at 100% 100%,#1f5b62,transparent 65%)}h1{font-size:32px;letter-spacing:-.9px;margin:7px 0 8px}h2{font-size:18px;margin:0}.hero p,.muted{color:#56677b;margin:0}.hero p{color:#c3d6df}.eyebrow{font:12px 'IBM Plex Mono',monospace;color:#80e8cd;text-transform:uppercase;letter-spacing:1px}.primary,.secondary,.danger{border:1px solid transparent;border-radius:7px;padding:9px 13px;font-weight:600;white-space:nowrap}.primary{background:#32d1ad;color:#102c30}.secondary{background:white;border-color:#dbe4ea;color:#24384d}.danger{color:#9b2232;background:#ffe9ed}.metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-bottom:24px}.card,.panel{background:white;border:1px solid #dce6ec;border-radius:11px}.card{padding:17px;display:grid;gap:7px}.card strong{font-size:29px}.card small{color:#516479}.panel{overflow:hidden;margin-bottom:18px}.heading,.filters{padding:16px 19px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}.heading p{margin-top:5px}.filters{border-top:1px solid #eef2f4;justify-content:flex-start}.filters input{flex:1;min-width:160px}input,select{padding:9px 11px;border:1px solid #cedae2;border-radius:7px;background:white;color:#172334}.scroll{overflow:auto}table{border-collapse:collapse;width:100%;white-space:nowrap}th,td{text-align:left;padding:13px 19px;border-top:1px solid #e8eef2}th{background:#f8fafb;color:#52657a;font-size:12px}td:first-child{font:12px 'IBM Plex Mono',monospace;color:#556d80}.badge{display:inline-block;padding:4px 8px;border-radius:99px;background:#eaf0f6;color:#32475b;font-size:12px;font-weight:600}.critical{background:#fce4e9;color:#9c2740}.high,.in-progress{background:#ffefd6;color:#855009}.medium,.investigating{background:#e5eeff;color:#254d94}.resolved,.completed,.active,.remediated,.low{background:#dbf5eb;color:#155f50}.link{background:none;border:0;color:#116c61;padding:0;font-weight:700}.empty{padding:24px;color:#516479}.count{padding:12px 19px;color:#516479;font-size:12px;border-top:1px solid #e8eef2}.report{display:grid;gap:8px;padding:18px}.bar{height:8px;background:#e9f0f3;border-radius:9px;overflow:hidden}.bar span{display:block;height:100%;background:#23ad91}dialog{width:min(480px,calc(100% - 32px));border:0;border-radius:12px;padding:24px;color:#172334;box-shadow:0 15px 65px #10233755}dialog::backdrop{background:#09172699}form{display:grid;gap:13px}label{display:grid;gap:5px;font-weight:600}.actions{display:flex;justify-content:flex-end;gap:8px;flex-wrap:wrap}#notice{position:fixed;bottom:18px;right:18px;background:#142c3b;color:white;padding:12px 16px;border-radius:8px}#notice:empty{display:none}@media(max-width:840px){.layout{grid-template-columns:1fr}aside{padding:12px 16px}.brand{margin:0}nav{display:flex;overflow:auto}.sidefoot{display:none}.content,.top{padding:18px}.metrics{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:470px){.hero{align-items:flex-start;flex-direction:column;padding:20px}h1{font-size:26px}.card{padding:12px}}
+<html lang="en">
+   <head>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width,initial-scale=1" />
+      <title>Security Desk</title>
+      <style>
+         /* Page theme, layout, components, and responsive breakpoints. */
+         @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono&display=swap");
+         * {
+            box-sizing: border-box;
+         }
+         body {
+            margin: 0;
+            color: #172334;
+            background: #f4f7f9;
+            font:
+               14px Inter,
+               system-ui,
+               sans-serif;
+         }
+         button,
+         input,
+         select {
+            font: inherit;
+         }
+         button {
+            cursor: pointer;
+         }
+         button:focus-visible,
+         input:focus-visible,
+         select:focus-visible {
+            outline: 2px solid #23a994;
+            outline-offset: 3px;
+         }
+         .layout {
+            display: grid;
+            grid-template-columns: 225px minmax(0, 1fr);
+            min-height: 100vh;
+         }
+         aside {
+            background: #101e2b;
+            color: #aab8c5;
+            padding: 32px 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+         }
+         .brand {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            color: white;
+            font-weight: 700;
+            font-size: 17px;
+            margin: 0 8px 35px;
+         }
+         .mark {
+            display: grid;
+            place-items: center;
+            background: #34d6b2;
+            color: #102b2d;
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            font-size: 24px;
+         }
+         nav {
+            display: grid;
+            gap: 6px;
+         }
+         nav button {
+            border: 0;
+            text-align: left;
+            border-radius: 7px;
+            background: transparent;
+            color: inherit;
+            padding: 11px 12px;
+            font-weight: 500;
+         }
+         nav button:hover,
+         nav button[aria-current="page"] {
+            background: #203749;
+            color: #7ae8cc;
+         }
+         nav span {
+            display: inline-block;
+            width: 26px;
+         }
+         .sidefoot {
+            margin-top: auto;
+            padding: 24px 9px 0;
+            font-size: 12px;
+            color: #afc5d2;
+         }
+         .dot {
+            display: inline-block;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #28ba98;
+            margin-right: 7px;
+         }
+         .top {
+            background: white;
+            border-bottom: 1px solid #e0e7eb;
+            padding: 17px 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+         }
+         .avatar {
+            border-radius: 50%;
+            background: #d9f5ec;
+            color: #125e52;
+            padding: 8px 9px;
+            font-weight: 700;
+         }
+         .content {
+            max-width: 1450px;
+            margin: auto;
+            padding: 32px;
+         }
+         .hero {
+            background: #122b3b;
+            color: white;
+            border-radius: 14px;
+            padding: 28px 32px;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            background-image: radial-gradient(
+               ellipse at 100% 100%,
+               #1f5b62,
+               transparent 65%
+            );
+         }
+         h1 {
+            font-size: 32px;
+            letter-spacing: -0.9px;
+            margin: 7px 0 8px;
+         }
+         h2 {
+            font-size: 18px;
+            margin: 0;
+         }
+         .hero p,
+         .muted {
+            color: #56677b;
+            margin: 0;
+         }
+         .hero p {
+            color: #c3d6df;
+         }
+         .eyebrow {
+            font:
+               12px "IBM Plex Mono",
+               monospace;
+            color: #80e8cd;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+         }
+         .primary,
+         .secondary,
+         .danger {
+            border: 1px solid transparent;
+            border-radius: 7px;
+            padding: 9px 13px;
+            font-weight: 600;
+            white-space: nowrap;
+         }
+         .primary {
+            background: #32d1ad;
+            color: #102c30;
+         }
+         .secondary {
+            background: white;
+            border-color: #dbe4ea;
+            color: #24384d;
+         }
+         .danger {
+            color: #9b2232;
+            background: #ffe9ed;
+         }
+         .metrics {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+         }
+         .card,
+         .panel {
+            background: white;
+            border: 1px solid #dce6ec;
+            border-radius: 11px;
+         }
+         .card {
+            padding: 17px;
+            display: grid;
+            gap: 7px;
+         }
+         .card strong {
+            font-size: 29px;
+         }
+         .card small {
+            color: #516479;
+         }
+         .panel {
+            overflow: hidden;
+            margin-bottom: 18px;
+         }
+         .heading,
+         .filters {
+            padding: 16px 19px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+         }
+         .heading p {
+            margin-top: 5px;
+         }
+         .filters {
+            border-top: 1px solid #eef2f4;
+            justify-content: flex-start;
+         }
+         .filters input {
+            flex: 1;
+            min-width: 160px;
+         }
+         input,
+         select {
+            padding: 9px 11px;
+            border: 1px solid #cedae2;
+            border-radius: 7px;
+            background: white;
+            color: #172334;
+         }
+         .scroll {
+            overflow: auto;
+         }
+         table {
+            border-collapse: collapse;
+            width: 100%;
+            white-space: nowrap;
+         }
+         th,
+         td {
+            text-align: left;
+            padding: 13px 19px;
+            border-top: 1px solid #e8eef2;
+         }
+         th {
+            background: #f8fafb;
+            color: #52657a;
+            font-size: 12px;
+         }
+         td:first-child {
+            font:
+               12px "IBM Plex Mono",
+               monospace;
+            color: #556d80;
+         }
+         .badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 99px;
+            background: #eaf0f6;
+            color: #32475b;
+            font-size: 12px;
+            font-weight: 600;
+         }
+         .critical {
+            background: #fce4e9;
+            color: #9c2740;
+         }
+         .high,
+         .in-progress {
+            background: #ffefd6;
+            color: #855009;
+         }
+         .medium,
+         .investigating {
+            background: #e5eeff;
+            color: #254d94;
+         }
+         .resolved,
+         .completed,
+         .active,
+         .remediated,
+         .low {
+            background: #dbf5eb;
+            color: #155f50;
+         }
+         .link {
+            background: none;
+            border: 0;
+            color: #116c61;
+            padding: 0;
+            font-weight: 700;
+         }
+         .empty {
+            padding: 24px;
+            color: #516479;
+         }
+         .count {
+            padding: 12px 19px;
+            color: #516479;
+            font-size: 12px;
+            border-top: 1px solid #e8eef2;
+         }
+         .report {
+            display: grid;
+            gap: 8px;
+            padding: 18px;
+         }
+         .bar {
+            height: 8px;
+            background: #e9f0f3;
+            border-radius: 9px;
+            overflow: hidden;
+         }
+         .bar span {
+            display: block;
+            height: 100%;
+            background: #23ad91;
+         }
+         dialog {
+            width: min(480px, calc(100% - 32px));
+            border: 0;
+            border-radius: 12px;
+            padding: 24px;
+            color: #172334;
+            box-shadow: 0 15px 65px #10233755;
+         }
+         dialog::backdrop {
+            background: #09172699;
+         }
+         form {
+            display: grid;
+            gap: 13px;
+         }
+         label {
+            display: grid;
+            gap: 5px;
+            font-weight: 600;
+         }
+         .actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 8px;
+            flex-wrap: wrap;
+         }
+         #notice {
+            position: fixed;
+            bottom: 18px;
+            right: 18px;
+            background: #142c3b;
+            color: white;
+            padding: 12px 16px;
+            border-radius: 8px;
+         }
+         #notice:empty {
+            display: none;
+         }
+         @media (max-width: 840px) {
+            .layout {
+               grid-template-columns: 1fr;
+            }
+            aside {
+               padding: 12px 16px;
+            }
+            .brand {
+               margin: 0;
+            }
+            nav {
+               display: flex;
+               overflow: auto;
+            }
+            .sidefoot {
+               display: none;
+            }
+            .content,
+            .top {
+               padding: 18px;
+            }
+            .metrics {
+               grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+         }
+         @media (max-width: 470px) {
+            .hero {
+               align-items: flex-start;
+               flex-direction: column;
+               padding: 20px;
+            }
+            h1 {
+               font-size: 26px;
+            }
+            .card {
+               padding: 12px;
+            }
+         }
 
-[hidden]{display:none!important}.account{display:flex;align-items:center;gap:10px}.account-name{display:grid;gap:2px}.account-name small{color:#56677b}.login-shell{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;max-width:1280px;margin:auto;padding:32px;gap:24px;align-items:stretch}.login-intro{display:flex;flex-direction:column;justify-content:space-between;min-height:540px;padding:40px;border-radius:18px;background:radial-gradient(ellipse at 90% 90%,#205c62,transparent 65%),#101e2b;color:#fff}.login-intro .brand{margin:0}.login-intro h1{font-size:clamp(32px,5vw,62px);line-height:1.02;max-width:10ch;letter-spacing:-.04em}.login-intro p{line-height:1.55;color:#c3d6df;max-width:35ch}.login-content{display:grid;place-items:center;padding:25px}.login-card{width:100%;max-width:395px}.login-card h2{font-size:28px;margin-bottom:8px}.login-card p{line-height:1.5}.login-card form{margin-top:20px}.login-card form .primary{text-align:center}.login-error{color:#9b2232;margin:0}.demo-accounts{margin-top:22px;border-top:1px solid #dce6ec;padding-top:17px}.demo-accounts p{margin:0 0 9px}.demo-buttons{display:flex;gap:6px;flex-wrap:wrap}.demo-buttons button{padding:7px 9px}.demo-buttons button:hover,.secondary:hover{background:#eaf5f2}.readonly{color:#52657a;font-size:12px}.form-help{color:#56677b;margin:0;font-size:13px}.workspace-note{padding:10px 12px;border-radius:7px;background:#e4f4ee;color:#20584d;margin:0 0 16px}
-@media(max-width:720px){.login-shell{grid-template-columns:1fr;padding:16px;gap:8px}.login-intro{min-height:auto;padding:24px;gap:18px}.login-intro h1{max-width:none}.login-intro p{margin-bottom:0}.login-content{padding:17px 9px}.account-name strong{display:none}.account .avatar{display:none}.top{gap:8px}.account{gap:5px}}
-</style></head><body>
-<section id="loginScreen" class="login-shell" aria-label="Sign in">
-<div class="login-intro"><div class="brand"><span class="mark" aria-hidden="true">◇</span>Security Desk</div><div><h1>Security operations</h1><p>Investigate incidents, prioritize vulnerabilities, and track remediation across your IT assets.</p></div></div>
-<div class="login-content"><div class="login-card"><h2>Sign in</h2><p class="muted">Choose a demo account below to try its permissions.</p>
-<form id="loginForm"><label>Username<input id="username" name="username" autocomplete="username" required></label><label>Password<input id="password" name="password" type="password" autocomplete="current-password" required></label><p id="loginError" class="login-error" role="alert" hidden></p><button class="primary">Sign in</button></form>
-<div class="demo-accounts"><p class="muted">Fill in demo credentials</p><div class="demo-buttons"><button type="button" class="secondary" data-demo="admin">Administrator</button><button type="button" class="secondary" data-demo="maya">Security analyst</button><button type="button" class="secondary" data-demo="viewer">Viewer</button></div></div></div></div>
-</section>
-<div class="layout" id="workspace" hidden><aside><div class="brand"><span class="mark" aria-hidden="true">◇</span>Security Desk</div><nav aria-label="Workspace"></nav><div class="sidefoot"><span class="dot"></span>Demo workspace</div></aside>
-<main><div class="top"><span class="muted">Workspace / <strong id="crumb">Overview</strong></span><div class="account"><span class="avatar" id="avatar" aria-hidden="true"></span><div class="account-name"><strong id="accountName"></strong><small id="roleName"></small></div><button type="button" class="secondary" id="logout">Log out</button></div></div><div class="content" id="content"></div></main></div>
-<dialog id="editor" aria-labelledby="formTitle"><form id="form"><h2 id="formTitle"></h2><p id="formHelp" class="form-help" hidden>Assigned analysts can update the status of this record.</p><div id="fields" style="display:grid;gap:12px"></div><div class="actions"><button type="button" class="danger" id="remove">Delete</button><button type="button" class="secondary" id="cancel">Cancel</button><button class="primary">Save record</button></div></form></dialog><div id="notice" role="status"></div>
-<script>
-'use strict';
-const $=id=>document.getElementById(id);
-const pages=['Overview','Incidents','Vulnerabilities','Assets','Analysts','Remediation','Reports'];
-const icons=['▦','◈','△','▣','♙','☑','▤'];
-const severity=['Critical','High','Medium','Low'];
-const specs={
- Incidents:{one:'incident',prefix:'INC',fields:[['title','Incident'],['severity','Severity',severity],['status','Status',['Open','Investigating','Resolved']],['asset','Affected asset','Assets'],['owner','Analyst','Analysts']]},
- Vulnerabilities:{one:'vulnerability',prefix:'VUL',fields:[['title','Vulnerability'],['severity','Severity',severity],['status','Status',['Open','In progress','Remediated']],['asset','Affected asset','Assets']]},
- Assets:{one:'asset',prefix:'AST',fields:[['title','Asset'],['type','Type',['Server','Database','Endpoint','Service']],['status','Status',['Active','Retired']]]},
- Analysts:{one:'analyst',prefix:'ANA',fields:[['title','Name'],['role','Role',['Incident responder','Security engineer','SOC analyst']]]},
- Remediation:{one:'task',prefix:'REM',fields:[['title','Task'],['status','Status',['Open','In progress','Completed']],['vulnerability','Vulnerability','Vulnerabilities'],['owner','Analyst','Analysts']]}
-};
-const defaults={
- Assets:[{id:'AST-101',title:'Customer portal',type:'Service',status:'Active'},{id:'AST-102',title:'Identity gateway',type:'Server',status:'Active'},{id:'AST-103',title:'Finance database',type:'Database',status:'Active'}],
- Analysts:[{id:'ANA-101',title:'Maya Chen',role:'Incident responder'},{id:'ANA-102',title:'Jordan Ellis',role:'Security engineer'},{id:'ANA-103',title:'Sam Rivera',role:'SOC analyst'}],
- Incidents:[{id:'INC-104',title:'Suspicious sign-in activity',severity:'Critical',status:'Investigating',asset:'AST-102',owner:'ANA-101'},{id:'INC-103',title:'Unusual outbound traffic',severity:'High',status:'Open',asset:'AST-101',owner:'ANA-102'},{id:'INC-102',title:'Unexpected database access',severity:'High',status:'Investigating',asset:'AST-103',owner:'ANA-103'},{id:'INC-101',title:'Phishing email reported',severity:'Medium',status:'Resolved',asset:'',owner:'ANA-101'}],
- Vulnerabilities:[{id:'VUL-102',title:'Outdated authentication component',severity:'Critical',status:'Open',asset:'AST-102'},{id:'VUL-101',title:'Missing security update',severity:'High',status:'In progress',asset:'AST-101'}],
- Remediation:[{id:'REM-102',title:'Update authentication component',status:'In progress',vulnerability:'VUL-102',owner:'ANA-101'},{id:'REM-101',title:'Review patch inventory',status:'Completed',vulnerability:'VUL-101',owner:'ANA-103'}]
-};
-const storageKey='security-desk-demo-v1';
-let db=structuredClone(defaults);
-try{const saved=JSON.parse(localStorage.getItem(storageKey));if(saved&&Object.keys(specs).every(key=>Array.isArray(saved[key])))db=saved}catch{}
-const accounts={
- admin:{name:'Alex Morgan',role:'Administrator',initials:'AM'},
- maya:{name:'Maya Chen',role:'Security analyst',initials:'MC',analystId:'ANA-101'},
- viewer:{name:'Taylor Brooks',role:'Viewer',initials:'TB'}
-};
-const demoPassword='SecurityDeskDemo';
-let account=null,page='Overview',editing=null,formPage='',noticeTimer;
-function canCreate(key){
- return account?.role==='Administrator'||(account?.role==='Security analyst'&&['Incidents','Vulnerabilities'].includes(key));
-}
-function canEdit(key,row){
- return account?.role==='Administrator'||(account?.role==='Security analyst'&&['Incidents','Remediation'].includes(key)&&row.owner===account.analystId);
-}
-function showWorkspace(){
- $('loginScreen').hidden=!!account;
- $('workspace').hidden=!account;
- if(!account)return;
- $('accountName').textContent=account.name;
- $('roleName').textContent=account.role;
- $('avatar').textContent=account.initials;
- go('Overview');
- $('logout').focus();
-}
-const esc=value=>String(value??'').replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[char]);
-const linked=(value,source)=>typeof source==='string'?(db[source].find(row=>row.id===value)?.title??'Unassigned'):value;
-const badge=value=>'<span class="badge '+value.toLowerCase().replaceAll(' ','-')+'">'+esc(value)+'</span>';
-function notify(message){$('notice').textContent=message;clearTimeout(noticeTimer);noticeTimer=setTimeout(()=>$('notice').textContent='',3800)}
-function save(){try{localStorage.setItem(storageKey,JSON.stringify(db));return true}catch{return false}}
-function renderRows(key,rows){const spec=specs[key];return rows.map(row=>'<tr><td>'+esc(row.id)+'</td>'+spec.fields.map(([field,,source])=>'<td>'+(['status','severity'].includes(field)?badge(row[field]):esc(linked(row[field],source)))+'</td>').join('')+'<td>'+(canEdit(key,row)?'<button class="link" data-edit="'+esc(row.id)+'" data-kind="'+key+'" aria-label="Edit '+esc(row.title)+'">Edit</button>':'<span class="readonly">View only</span>')+'</td></tr>').join('')}
-function table(key,rows){return '<div class="scroll"><table><thead><tr><th>ID</th>'+specs[key].fields.map(([,label])=>'<th>'+label+'</th>').join('')+'<th>Actions</th></tr></thead><tbody id="rows">'+renderRows(key,rows)+'</tbody></table></div><p id="empty" class="empty" '+(rows.length?'hidden':'')+'>No matching records.</p><div class="count" id="count">'+rows.length+' records</div>'}
-function go(next){page=next;render()}
-function render(){
- $('crumb').textContent=page;
- document.querySelector('nav').innerHTML=pages.map((name,i)=>'<button data-page="'+name+'" '+(name===page?'aria-current="page"':'')+'><span aria-hidden="true">'+icons[i]+'</span>'+name+'</button>').join('');
- const unresolved=db.Incidents.filter(r=>r.status!=='Resolved');
- const critical=db.Vulnerabilities.filter(r=>r.severity==='Critical'&&r.status!=='Remediated');
- const completed=db.Remediation.filter(r=>r.status==='Completed').length;
- const percent=db.Remediation.length?Math.round(completed/db.Remediation.length*100):0;
- const spec=specs[page];
- const intro=page==='Overview'?'Track security incidents, affected assets, and remediation in one place.':page==='Reports'?'Review unresolved incidents, critical vulnerabilities, and remediation progress.':'Review and manage '+page.toLowerCase()+' records.';
- const action=page==='Overview'&&canCreate('Incidents')?'<button class="primary" data-new="Incidents">+ Report incident</button>':spec&&canCreate(page)?'<button class="primary" data-new="'+page+'">+ Add '+spec.one+'</button>':'';
- const hero='<section class="hero"><div><div class="eyebrow">Security operations</div><h1>'+(page==='Overview'?'Security overview':page)+'</h1><p>'+intro+'</p></div>'+action+'</section>';
- let body='';
- if(page==='Overview'){
-  const metrics=[['Unresolved incidents',unresolved.length,'Awaiting resolution'],['Critical vulnerabilities',critical.length,'Open or in progress'],['Active assets',db.Assets.filter(r=>r.status==='Active').length,'In asset inventory'],['Remediation progress',percent+'%',completed+' of '+db.Remediation.length+' tasks complete']];
-  body='<div class="metrics">'+metrics.map(([label,value,hint])=>'<div class="card"><span>'+label+'</span><strong>'+value+'</strong><small>'+hint+'</small></div>').join('')+'</div><section class="panel"><div class="heading"><div><h2>Recent incidents</h2><p class="muted">Review and update reported security events.</p></div><button class="secondary" data-page="Incidents">View all incidents →</button></div>'+table('Incidents',db.Incidents.slice(0,5))+'</section>';
- }else if(page==='Reports'){
-  body='<section class="panel report"><h2>Remediation progress</h2><p class="muted">'+completed+' of '+db.Remediation.length+' tasks complete · '+percent+'%</p><div class="bar" role="progressbar" aria-label="Remediation progress" aria-valuenow="'+percent+'"><span style="width:'+percent+'%"></span></div></section>'+[['Incidents','Unresolved incidents',unresolved],['Vulnerabilities','Critical vulnerabilities',critical]].map(([key,title,rows])=>'<section class="panel"><div class="heading"><h2>'+title+' ('+rows.length+')</h2><button class="secondary" data-page="'+key+'">View records →</button></div>'+(rows.length?'<ul>'+rows.map(row=>'<li>'+esc(row.id)+' · '+esc(row.title)+'</li>').join('')+'</ul>':'<p class="empty">No matching records.</p>')+'</section>').join('');
- }else{
-  const filters=spec.fields.filter(([name])=>['severity','status'].includes(name)).map(([name,label,options])=>'<select aria-label="'+label+'" data-filter="'+name+'"><option value="">All '+label.toLowerCase()+'</option>'+options.map(option=>'<option>'+option+'</option>').join('')+'</select>').join('');
-  body='<section class="panel"><div class="heading"><h2>'+page+' register</h2></div><div class="filters"><input id="search" type="search" aria-label="Search records" placeholder="Search records…">'+filters+'</div>'+table(page,db[page])+'</section>';
- }
- const note=page==='Overview'&&account?.role==='Security analyst'?'<p class="workspace-note">You can report incidents, log vulnerabilities, and update the status of your assigned incidents and tasks.</p>':page==='Overview'&&account?.role==='Viewer'?'<p class="workspace-note">You have read-only access to records and reports.</p>':'';
- $('content').innerHTML=hero+note+body;
-}
-function filter(){
- const search=$('search').value.trim().toLowerCase();
- const filters=[...document.querySelectorAll('[data-filter]')];
- const rows=db[page].filter(row=>filters.every(el=>!el.value||row[el.dataset.filter]===el.value)&&[row.id,...specs[page].fields.map(([field,,source])=>linked(row[field],source))].some(value=>String(value).toLowerCase().includes(search)));
- $('rows').innerHTML=renderRows(page,rows);$('count').textContent=rows.length+' records';$('empty').hidden=rows.length>0;
-}
-function openEditor(key,id){
- const row=db[key]?.find(record=>record.id===id);
- if(id ? !row||!canEdit(key,row) : !canCreate(key))return;
- formPage=key;editing=row??null;
- const analyst=account.role==='Security analyst';
- $('formTitle').textContent=(editing?'Edit ':'Add ')+specs[key].one;
- $('remove').hidden=!editing||analyst;
- $('formHelp').hidden=!(editing&&analyst);
- $('fields').innerHTML=specs[key].fields.filter(([field])=>!analyst||(editing?field==='status':field!=='owner')).map(([field,label,source])=>{
-  const value=editing?.[field]??'';
-  const options=typeof source==='string'?[['','Unassigned'],...db[source].map(row=>[row.id,row.title])]:source?.map(item=>[item,item]);
-  return '<label>'+label+(options?'<select name="'+field+'">'+options.map(([id,title])=>'<option value="'+esc(id)+'" '+(id===value?'selected':'')+'>'+esc(title)+'</option>').join('')+'</select>':'<input name="'+field+'" required maxlength="120" value="'+esc(value)+'">')+'</label>';
- }).join('');
- $('editor').showModal();
-}
-document.addEventListener('click',event=>{
- const button=event.target.closest('button');if(!button)return;
- const {page:next,new:key,kind,edit,demo}=button.dataset;
- if(demo){
-  $('username').value=demo;
-  $('password').value=demoPassword;
-  $('loginError').hidden=true;
-  $('loginForm').querySelector('button').focus();
- }
- if(!account)return;
- if(next)go(next);
- if(key||kind)openEditor(key||kind,edit);
-});
-document.addEventListener('input',event=>{if(event.target.matches('#search,[data-filter]'))filter()});
-$('cancel').onclick=()=>$('editor').close();
-$('form').onsubmit=event=>{
- event.preventDefault();
- if(editing ? !canEdit(formPage,editing) : !canCreate(formPage))return;
- const data=Object.fromEntries(new FormData(event.currentTarget));
- if('title' in data){
-  data.title=data.title.trim();
-  if(!data.title){event.currentTarget.elements.title.focus();return}
- }
- if(editing&&account.role==='Security analyst')editing.status=data.status;
- else if(editing)Object.assign(editing,data);
- else{
-  const prefix=specs[formPage].prefix;
-  const next=Math.max(100,...db[formPage].map(row=>Number(row.id.split('-')[1])))+1;
-  db[formPage].unshift({...data,id:prefix+'-'+next});
- }
- const persisted=save();$('editor').close();render();notify(persisted?'Record saved.':'Record saved for this session.');
-};
-$('remove').onclick=()=>{
- if(!editing||account?.role!=='Administrator')return;
- const referenced=Object.entries(specs).some(([key,spec])=>spec.fields.some(([field,,source])=>source===formPage&&db[key].some(row=>row[field]===editing.id)));
- if(referenced){notify('Update linked records before deleting this record.');return}
- if(!confirm('Delete '+editing.title+'?'))return;
- db[formPage]=db[formPage].filter(row=>row.id!==editing.id);
- const persisted=save();$('editor').close();render();notify(persisted?'Record deleted.':'Record deleted for this session.');
-};
-$('loginForm').onsubmit=event=>{
- event.preventDefault();
- const username=$('username').value.trim().toLowerCase();
- if(!Object.hasOwn(accounts,username)||$('password').value!==demoPassword){
-  $('loginError').textContent='Enter a valid demo username and password.';
-  $('loginError').hidden=false;
-  return;
- }
- account=accounts[username];
- $('loginError').hidden=true;
- event.currentTarget.reset();
- showWorkspace();
-};
-$('logout').onclick=()=>{
- account=null;
- editing=null;
- $('notice').textContent='';
- showWorkspace();
- $('username').focus();
-};
-</script></body></html>
+         [hidden] {
+            display: none !important;
+         }
+         .account {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+         }
+         .account-name {
+            display: grid;
+            gap: 2px;
+         }
+         .account-name small {
+            color: #56677b;
+         }
+         .login-shell {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            max-width: 1280px;
+            margin: auto;
+            padding: 32px;
+            gap: 24px;
+            align-items: stretch;
+         }
+         .login-intro {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 540px;
+            padding: 40px;
+            border-radius: 18px;
+            background: radial-gradient(
+                  ellipse at 90% 90%,
+                  #205c62,
+                  transparent 65%
+               ),
+               #101e2b;
+            color: #fff;
+         }
+         .login-intro .brand {
+            margin: 0;
+         }
+         .login-intro h1 {
+            font-size: clamp(32px, 5vw, 62px);
+            line-height: 1.02;
+            max-width: 10ch;
+            letter-spacing: -0.04em;
+         }
+         .login-intro p {
+            line-height: 1.55;
+            color: #c3d6df;
+            max-width: 35ch;
+         }
+         .login-content {
+            display: grid;
+            place-items: center;
+            padding: 25px;
+         }
+         .login-card {
+            width: 100%;
+            max-width: 395px;
+         }
+         .login-card h2 {
+            font-size: 28px;
+            margin-bottom: 8px;
+         }
+         .login-card p {
+            line-height: 1.5;
+         }
+         .login-card form {
+            margin-top: 20px;
+         }
+         .login-card form .primary {
+            text-align: center;
+         }
+         .login-error {
+            color: #9b2232;
+            margin: 0;
+         }
+         .demo-accounts {
+            margin-top: 22px;
+            border-top: 1px solid #dce6ec;
+            padding-top: 17px;
+         }
+         .demo-accounts p {
+            margin: 0 0 9px;
+         }
+         .demo-buttons {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+         }
+         .demo-buttons button {
+            padding: 7px 9px;
+         }
+         .demo-buttons button:hover,
+         .secondary:hover {
+            background: #eaf5f2;
+         }
+         .readonly {
+            color: #52657a;
+            font-size: 12px;
+         }
+         .form-help {
+            color: #56677b;
+            margin: 0;
+            font-size: 13px;
+         }
+         .workspace-note {
+            padding: 10px 12px;
+            border-radius: 7px;
+            background: #e4f4ee;
+            color: #20584d;
+            margin: 0 0 16px;
+         }
+         @media (max-width: 720px) {
+            .login-shell {
+               grid-template-columns: 1fr;
+               padding: 16px;
+               gap: 8px;
+            }
+            .login-intro {
+               min-height: auto;
+               padding: 24px;
+               gap: 18px;
+            }
+            .login-intro h1 {
+               max-width: none;
+            }
+            .login-intro p {
+               margin-bottom: 0;
+            }
+            .login-content {
+               padding: 17px 9px;
+            }
+            .account-name strong {
+               display: none;
+            }
+            .account .avatar {
+               display: none;
+            }
+            .top {
+               gap: 8px;
+            }
+            .account {
+               gap: 5px;
+            }
+         }
+      </style>
+   </head>
+   <body>
+      <!-- Login view: shown until a demo account is selected. -->
+      <section id="loginScreen" class="login-shell" aria-label="Sign in">
+         <div class="login-intro">
+            <div class="brand">
+               <span class="mark" aria-hidden="true">◇</span>Security Desk
+            </div>
+            <div>
+               <h1>Security operations</h1>
+               <p>
+                  Investigate incidents, prioritize vulnerabilities, and track
+                  remediation across your IT assets.
+               </p>
+            </div>
+         </div>
+         <div class="login-content">
+            <div class="login-card">
+               <h2>Sign in</h2>
+               <p class="muted">
+                  Choose a demo account below to try its permissions.
+               </p>
+               <form id="loginForm">
+                  <label
+                     >Username<input
+                        id="username"
+                        name="username"
+                        autocomplete="username"
+                        required /></label
+                  ><label
+                     >Password<input
+                        id="password"
+                        name="password"
+                        type="password"
+                        autocomplete="current-password"
+                        required
+                  /></label>
+                  <p
+                     id="loginError"
+                     class="login-error"
+                     role="alert"
+                     hidden
+                  ></p>
+                  <button class="primary">Sign in</button>
+               </form>
+               <div class="demo-accounts">
+                  <p class="muted">Fill in demo credentials</p>
+                  <div class="demo-buttons">
+                     <button type="button" class="secondary" data-demo="admin">
+                        Administrator</button
+                     ><button type="button" class="secondary" data-demo="maya">
+                        Security analyst</button
+                     ><button
+                        type="button"
+                        class="secondary"
+                        data-demo="viewer"
+                     >
+                        Viewer
+                     </button>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+      <!-- Main workspace: hidden while the login view is active. -->
+      <div class="layout" id="workspace" hidden>
+         <aside>
+            <div class="brand">
+               <span class="mark" aria-hidden="true">◇</span>Security Desk
+            </div>
+            <nav aria-label="Workspace"></nav>
+            <div class="sidefoot"><span class="dot"></span>Demo workspace</div>
+         </aside>
+         <main>
+            <div class="top">
+               <span class="muted"
+                  >Workspace / <strong id="crumb">Overview</strong></span
+               >
+               <div class="account">
+                  <span class="avatar" id="avatar" aria-hidden="true"></span>
+                  <div class="account-name">
+                     <strong id="accountName"></strong
+                     ><small id="roleName"></small>
+                  </div>
+                  <button type="button" class="secondary" id="logout">
+                     Log out
+                  </button>
+               </div>
+            </div>
+            <div class="content" id="content"></div>
+         </main>
+      </div>
+      <!-- Shared record editor: used for adding, editing, and deleting records. -->
+      <dialog id="editor" aria-labelledby="formTitle">
+         <form id="form">
+            <h2 id="formTitle"></h2>
+            <p id="formHelp" class="form-help" hidden>
+               Assigned analysts can update the status of this record.
+            </p>
+            <div id="fields" style="display: grid; gap: 12px"></div>
+            <div class="actions">
+               <button type="button" class="danger" id="remove">Delete</button
+               ><button type="button" class="secondary" id="cancel">
+                  Cancel</button
+               ><button class="primary">Save record</button>
+            </div>
+         </form>
+      </dialog>
+      <div id="notice" role="status"></div>
+      <script>
+         "use strict";
+         // Short helper for finding an element by its ID.
+         const $ = (id) => document.getElementById(id);
+         // Define workspace navigation labels and icons.
+         const pages = [
+            "Overview",
+            "Incidents",
+            "Vulnerabilities",
+            "Assets",
+            "Analysts",
+            "Remediation",
+            "Reports",
+         ];
+         const icons = ["▦", "◈", "△", "▣", "♙", "☑", "▤"];
+         const severity = ["Critical", "High", "Medium", "Low"];
+         // Describe each record type, its ID prefix, and the fields shown in its table/editor.
+         const specs = {
+            Incidents: {
+               one: "incident",
+               prefix: "INC",
+               fields: [
+                  ["title", "Incident"],
+                  ["severity", "Severity", severity],
+                  ["status", "Status", ["Open", "Investigating", "Resolved"]],
+                  ["asset", "Affected asset", "Assets"],
+                  ["owner", "Analyst", "Analysts"],
+               ],
+            },
+            Vulnerabilities: {
+               one: "vulnerability",
+               prefix: "VUL",
+               fields: [
+                  ["title", "Vulnerability"],
+                  ["severity", "Severity", severity],
+                  ["status", "Status", ["Open", "In progress", "Remediated"]],
+                  ["asset", "Affected asset", "Assets"],
+               ],
+            },
+            Assets: {
+               one: "asset",
+               prefix: "AST",
+               fields: [
+                  ["title", "Asset"],
+                  [
+                     "type",
+                     "Type",
+                     ["Server", "Database", "Endpoint", "Service"],
+                  ],
+                  ["status", "Status", ["Active", "Retired"]],
+               ],
+            },
+            Analysts: {
+               one: "analyst",
+               prefix: "ANA",
+               fields: [
+                  ["title", "Name"],
+                  [
+                     "role",
+                     "Role",
+                     ["Incident responder", "Security engineer", "SOC analyst"],
+                  ],
+               ],
+            },
+            Remediation: {
+               one: "task",
+               prefix: "REM",
+               fields: [
+                  ["title", "Task"],
+                  ["status", "Status", ["Open", "In progress", "Completed"]],
+                  ["vulnerability", "Vulnerability", "Vulnerabilities"],
+                  ["owner", "Analyst", "Analysts"],
+               ],
+            },
+         };
+         // Seed data used when no saved workspace data exists.
+         const defaults = {
+            Assets: [
+               {
+                  id: "AST-101",
+                  title: "Customer portal",
+                  type: "Service",
+                  status: "Active",
+               },
+               {
+                  id: "AST-102",
+                  title: "Identity gateway",
+                  type: "Server",
+                  status: "Active",
+               },
+               {
+                  id: "AST-103",
+                  title: "Finance database",
+                  type: "Database",
+                  status: "Active",
+               },
+            ],
+            Analysts: [
+               {
+                  id: "ANA-101",
+                  title: "Maya Chen",
+                  role: "Incident responder",
+               },
+               {
+                  id: "ANA-102",
+                  title: "Jordan Ellis",
+                  role: "Security engineer",
+               },
+               { id: "ANA-103", title: "Sam Rivera", role: "SOC analyst" },
+            ],
+            Incidents: [
+               {
+                  id: "INC-104",
+                  title: "Suspicious sign-in activity",
+                  severity: "Critical",
+                  status: "Investigating",
+                  asset: "AST-102",
+                  owner: "ANA-101",
+               },
+               {
+                  id: "INC-103",
+                  title: "Unusual outbound traffic",
+                  severity: "High",
+                  status: "Open",
+                  asset: "AST-101",
+                  owner: "ANA-102",
+               },
+               {
+                  id: "INC-102",
+                  title: "Unexpected database access",
+                  severity: "High",
+                  status: "Investigating",
+                  asset: "AST-103",
+                  owner: "ANA-103",
+               },
+               {
+                  id: "INC-101",
+                  title: "Phishing email reported",
+                  severity: "Medium",
+                  status: "Resolved",
+                  asset: "",
+                  owner: "ANA-101",
+               },
+            ],
+            Vulnerabilities: [
+               {
+                  id: "VUL-102",
+                  title: "Outdated authentication component",
+                  severity: "Critical",
+                  status: "Open",
+                  asset: "AST-102",
+               },
+               {
+                  id: "VUL-101",
+                  title: "Missing security update",
+                  severity: "High",
+                  status: "In progress",
+                  asset: "AST-101",
+               },
+            ],
+            Remediation: [
+               {
+                  id: "REM-102",
+                  title: "Update authentication component",
+                  status: "In progress",
+                  vulnerability: "VUL-102",
+                  owner: "ANA-101",
+               },
+               {
+                  id: "REM-101",
+                  title: "Review patch inventory",
+                  status: "Completed",
+                  vulnerability: "VUL-101",
+                  owner: "ANA-103",
+               },
+            ],
+         };
+         const storageKey = "security-desk-demo-v1";
+         // Clone the default records, then replace them with valid saved data when available.
+         let db = structuredClone(defaults);
+         try {
+            const saved = JSON.parse(localStorage.getItem(storageKey));
+            if (
+               saved &&
+               Object.keys(specs).every((key) => Array.isArray(saved[key]))
+            )
+               db = saved;
+         } catch {}
+         // Demo identities and role-specific permissions.
+         const accounts = {
+            admin: {
+               name: "Alex Morgan",
+               role: "Administrator",
+               initials: "AM",
+            },
+            maya: {
+               name: "Maya Chen",
+               role: "Security analyst",
+               initials: "MC",
+               analystId: "ANA-101",
+            },
+            viewer: { name: "Taylor Brooks", role: "Viewer", initials: "TB" },
+         };
+         const demoPassword = "SecurityDeskDemo";
+         // Current session state: signed-in account, active page, and record being edited.
+         let account = null,
+            page = "Overview",
+            editing = null,
+            formPage = "",
+            noticeTimer;
+         // Creation permissions vary by role.
+         function canCreate(key) {
+            return (
+               account?.role === "Administrator" ||
+               (account?.role === "Security analyst" &&
+                  ["Incidents", "Vulnerabilities"].includes(key))
+            );
+         }
+         // Analysts can edit only incidents and remediation tasks assigned to them.
+         function canEdit(key, row) {
+            return (
+               account?.role === "Administrator" ||
+               (account?.role === "Security analyst" &&
+                  ["Incidents", "Remediation"].includes(key) &&
+                  row.owner === account.analystId)
+            );
+         }
+         // Toggle the login and workspace views, then load the overview.
+         function showWorkspace() {
+            $("loginScreen").hidden = !!account;
+            $("workspace").hidden = !account;
+            if (!account) return;
+            $("accountName").textContent = account.name;
+            $("roleName").textContent = account.role;
+            $("avatar").textContent = account.initials;
+            go("Overview");
+            $("logout").focus();
+         }
+         // Escape user data before inserting it into HTML.
+         const esc = (value) =>
+            String(value ?? "").replace(
+               /[&<>"']/g,
+               (char) =>
+                  ({
+                     "&": "&amp;",
+                     "<": "&lt;",
+                     ">": "&gt;",
+                     '"': "&quot;",
+                     "'": "&#39;",
+                  })[char],
+            );
+         // Convert linked IDs such as analyst and asset IDs into display names.
+         const linked = (value, source) =>
+            typeof source === "string"
+               ? db[source].find((row) => row.id === value)?.title ??
+                 "Unassigned"
+               : value;
+         // Add a color-coded badge class for status and severity values.
+         const badge = (value) =>
+            '<span class="badge ' +
+            value.toLowerCase().replaceAll(" ", "-") +
+            '">' +
+            esc(value) +
+            "</span>";
+         // Show a temporary toast notification.
+         function notify(message) {
+            $("notice").textContent = message;
+            clearTimeout(noticeTimer);
+            noticeTimer = setTimeout(
+               () => ($("notice").textContent = ""),
+               3800,
+            );
+         }
+         // Persist the in-memory database; failure means changes remain session-only.
+         function save() {
+            try {
+               localStorage.setItem(storageKey, JSON.stringify(db));
+               return true;
+            } catch {
+               return false;
+            }
+         }
+         // Render table rows, including role-aware Edit/View-only actions.
+         function renderRows(key, rows) {
+            const spec = specs[key];
+            return rows
+               .map(
+                  (row) =>
+                     "<tr><td>" +
+                     esc(row.id) +
+                     "</td>" +
+                     spec.fields
+                        .map(
+                           ([field, , source]) =>
+                              "<td>" +
+                              (["status", "severity"].includes(field)
+                                 ? badge(row[field])
+                                 : esc(linked(row[field], source))) +
+                              "</td>",
+                        )
+                        .join("") +
+                     "<td>" +
+                     (canEdit(key, row)
+                        ? '<button class="link" data-edit="' +
+                          esc(row.id) +
+                          '" data-kind="' +
+                          key +
+                          '" aria-label="Edit ' +
+                          esc(row.title) +
+                          '">Edit</button>'
+                        : '<span class="readonly">View only</span>') +
+                     "</td></tr>",
+               )
+               .join("");
+         }
+         // Build the complete table markup for a record page.
+         function table(key, rows) {
+            return (
+               '<div class="scroll"><table><thead><tr><th>ID</th>' +
+               specs[key].fields
+                  .map(([, label]) => "<th>" + label + "</th>")
+                  .join("") +
+               '<th>Actions</th></tr></thead><tbody id="rows">' +
+               renderRows(key, rows) +
+               '</tbody></table></div><p id="empty" class="empty" ' +
+               (rows.length ? "hidden" : "") +
+               '>No matching records.</p><div class="count" id="count">' +
+               rows.length +
+               " records</div>"
+            );
+         }
+         // Change pages and rerender all workspace content.
+         function go(next) {
+            page = next;
+            render();
+         }
+         // Render navigation, metrics, reports, and record registers for the active page.
+         function render() {
+            $("crumb").textContent = page;
+            document.querySelector("nav").innerHTML = pages
+               .map(
+                  (name, i) =>
+                     '<button data-page="' +
+                     name +
+                     '" ' +
+                     (name === page ? 'aria-current="page"' : "") +
+                     '><span aria-hidden="true">' +
+                     icons[i] +
+                     "</span>" +
+                     name +
+                     "</button>",
+               )
+               .join("");
+            const unresolved = db.Incidents.filter(
+               (r) => r.status !== "Resolved",
+            );
+            const critical = db.Vulnerabilities.filter(
+               (r) => r.severity === "Critical" && r.status !== "Remediated",
+            );
+            const completed = db.Remediation.filter(
+               (r) => r.status === "Completed",
+            ).length;
+            const percent = db.Remediation.length
+               ? Math.round((completed / db.Remediation.length) * 100)
+               : 0;
+            const spec = specs[page];
+            const intro =
+               page === "Overview"
+                  ? "Track security incidents, affected assets, and remediation in one place."
+                  : page === "Reports"
+                    ? "Review unresolved incidents, critical vulnerabilities, and remediation progress."
+                    : "Review and manage " + page.toLowerCase() + " records.";
+            const action =
+               page === "Overview" && canCreate("Incidents")
+                  ? '<button class="primary" data-new="Incidents">+ Report incident</button>'
+                  : spec && canCreate(page)
+                    ? '<button class="primary" data-new="' +
+                      page +
+                      '">+ Add ' +
+                      spec.one +
+                      "</button>"
+                    : "";
+            const hero =
+               '<section class="hero"><div><div class="eyebrow">Security operations</div><h1>' +
+               (page === "Overview" ? "Security overview" : page) +
+               "</h1><p>" +
+               intro +
+               "</p></div>" +
+               action +
+               "</section>";
+            let body = "";
+            if (page === "Overview") {
+               // Summarize unresolved incidents, critical vulnerabilities, active assets, and task progress.
+               const metrics = [
+                  [
+                     "Unresolved incidents",
+                     unresolved.length,
+                     "Awaiting resolution",
+                  ],
+                  [
+                     "Critical vulnerabilities",
+                     critical.length,
+                     "Open or in progress",
+                  ],
+                  [
+                     "Active assets",
+                     db.Assets.filter((r) => r.status === "Active").length,
+                     "In asset inventory",
+                  ],
+                  [
+                     "Remediation progress",
+                     percent + "%",
+                     completed +
+                        " of " +
+                        db.Remediation.length +
+                        " tasks complete",
+                  ],
+               ];
+               body =
+                  '<div class="metrics">' +
+                  metrics
+                     .map(
+                        ([label, value, hint]) =>
+                           '<div class="card"><span>' +
+                           label +
+                           "</span><strong>" +
+                           value +
+                           "</strong><small>" +
+                           hint +
+                           "</small></div>",
+                     )
+                     .join("") +
+                  '</div><section class="panel"><div class="heading"><div><h2>Recent incidents</h2><p class="muted">Review and update reported security events.</p></div><button class="secondary" data-page="Incidents">View all incidents →</button></div>' +
+                  table("Incidents", db.Incidents.slice(0, 5)) +
+                  "</section>";
+            } else if (page === "Reports") {
+               // Reports view: show remediation progress and focused record summaries.
+               body =
+                  '<section class="panel report"><h2>Remediation progress</h2><p class="muted">' +
+                  completed +
+                  " of " +
+                  db.Remediation.length +
+                  " tasks complete · " +
+                  percent +
+                  '%</p><div class="bar" role="progressbar" aria-label="Remediation progress" aria-valuenow="' +
+                  percent +
+                  '"><span style="width:' +
+                  percent +
+                  '%"></span></div></section>' +
+                  [
+                     ["Incidents", "Unresolved incidents", unresolved],
+                     ["Vulnerabilities", "Critical vulnerabilities", critical],
+                  ]
+                     .map(
+                        ([key, title, rows]) =>
+                           '<section class="panel"><div class="heading"><h2>' +
+                           title +
+                           " (" +
+                           rows.length +
+                           ')</h2><button class="secondary" data-page="' +
+                           key +
+                           '">View records →</button></div>' +
+                           (rows.length
+                              ? "<ul>" +
+                                rows
+                                   .map(
+                                      (row) =>
+                                         "<li>" +
+                                         esc(row.id) +
+                                         " · " +
+                                         esc(row.title) +
+                                         "</li>",
+                                   )
+                                   .join("") +
+                                "</ul>"
+                              : '<p class="empty">No matching records.</p>') +
+                           "</section>",
+                     )
+                     .join("");
+            } else {
+               // Register view: add search and status/severity filters to the selected record table.
+               const filters = spec.fields
+                  .filter(([name]) => ["severity", "status"].includes(name))
+                  .map(
+                     ([name, label, options]) =>
+                        '<select aria-label="' +
+                        label +
+                        '" data-filter="' +
+                        name +
+                        '"><option value="">All ' +
+                        label.toLowerCase() +
+                        "</option>" +
+                        options
+                           .map((option) => "<option>" + option + "</option>")
+                           .join("") +
+                        "</select>",
+                  )
+                  .join("");
+               body =
+                  '<section class="panel"><div class="heading"><h2>' +
+                  page +
+                  ' register</h2></div><div class="filters"><input id="search" type="search" aria-label="Search records" placeholder="Search records…">' +
+                  filters +
+                  "</div>" +
+                  table(page, db[page]) +
+                  "</section>";
+            }
+            const note =
+               page === "Overview" && account?.role === "Security analyst"
+                  ? '<p class="workspace-note">You can report incidents, log vulnerabilities, and update the status of your assigned incidents and tasks.</p>'
+                  : page === "Overview" && account?.role === "Viewer"
+                    ? '<p class="workspace-note">You have read-only access to records and reports.</p>'
+                    : "";
+            $("content").innerHTML = hero + note + body;
+         }
+         // Filter the current register by text and every active dropdown filter.
+         function filter() {
+            const search = $("search").value.trim().toLowerCase();
+            const filters = [...document.querySelectorAll("[data-filter]")];
+            const rows = db[page].filter(
+               (row) =>
+                  filters.every(
+                     (el) => !el.value || row[el.dataset.filter] === el.value,
+                  ) &&
+                  [
+                     row.id,
+                     ...specs[page].fields.map(([field, , source]) =>
+                        linked(row[field], source),
+                     ),
+                  ].some((value) =>
+                     String(value).toLowerCase().includes(search),
+                  ),
+            );
+            $("rows").innerHTML = renderRows(page, rows);
+            $("count").textContent = rows.length + " records";
+            $("empty").hidden = rows.length > 0;
+         }
+         // Open the editor for a new record or an existing record the account may change.
+         function openEditor(key, id) {
+            const row = db[key]?.find((record) => record.id === id);
+            if (id ? !row || !canEdit(key, row) : !canCreate(key)) return;
+            formPage = key;
+            editing = row ?? null;
+            const analyst = account.role === "Security analyst";
+            $("formTitle").textContent =
+               (editing ? "Edit " : "Add ") + specs[key].one;
+            $("remove").hidden = !editing || analyst;
+            $("formHelp").hidden = !(editing && analyst);
+            $("fields").innerHTML = specs[key].fields
+               .filter(
+                  ([field]) =>
+                     !analyst ||
+                     (editing ? field === "status" : field !== "owner"),
+               )
+               .map(([field, label, source]) => {
+                  const value = editing?.[field] ?? "";
+                  const options =
+                     typeof source === "string"
+                        ? [
+                             ["", "Unassigned"],
+                             ...db[source].map((row) => [row.id, row.title]),
+                          ]
+                        : source?.map((item) => [item, item]);
+                  return (
+                     "<label>" +
+                     label +
+                     (options
+                        ? '<select name="' +
+                          field +
+                          '">' +
+                          options
+                             .map(
+                                ([id, title]) =>
+                                   '<option value="' +
+                                   esc(id) +
+                                   '" ' +
+                                   (id === value ? "selected" : "") +
+                                   ">" +
+                                   esc(title) +
+                                   "</option>",
+                             )
+                             .join("") +
+                          "</select>"
+                        : '<input name="' +
+                          field +
+                          '" required maxlength="120" value="' +
+                          esc(value) +
+                          '">') +
+                     "</label>"
+                  );
+               })
+               .join("");
+            $("editor").showModal();
+         }
+         // Central delegated click handler for demo accounts, navigation, and record actions.
+         document.addEventListener("click", (event) => {
+            const button = event.target.closest("button");
+            if (!button) return;
+            const { page: next, new: key, kind, edit, demo } = button.dataset;
+            if (demo) {
+               $("username").value = demo;
+               $("password").value = demoPassword;
+               $("loginError").hidden = true;
+               $("loginForm").querySelector("button").focus();
+            }
+            if (!account) return;
+            if (next) go(next);
+            if (key || kind) openEditor(key || kind, edit);
+         });
+         // Apply register filters whenever search or filter controls change.
+         document.addEventListener("input", (event) => {
+            if (event.target.matches("#search,[data-filter]")) filter();
+         });
+         // Close the editor without saving.
+         $("cancel").onclick = () => $("editor").close();
+         // Validate and save a new or edited record.
+         $("form").onsubmit = (event) => {
+            event.preventDefault();
+            if (editing ? !canEdit(formPage, editing) : !canCreate(formPage))
+               return;
+            const data = Object.fromEntries(new FormData(event.currentTarget));
+            if ("title" in data) {
+               data.title = data.title.trim();
+               if (!data.title) {
+                  event.currentTarget.elements.title.focus();
+                  return;
+               }
+            }
+            if (editing && account.role === "Security analyst")
+               editing.status = data.status;
+            else if (editing) Object.assign(editing, data);
+            else {
+               const prefix = specs[formPage].prefix;
+               const next =
+                  Math.max(
+                     100,
+                     ...db[formPage].map((row) => Number(row.id.split("-")[1])),
+                  ) + 1;
+               db[formPage].unshift({ ...data, id: prefix + "-" + next });
+            }
+            const persisted = save();
+            $("editor").close();
+            render();
+            notify(
+               persisted ? "Record saved." : "Record saved for this session.",
+            );
+         };
+         // Delete an administrator-selected record only if it has no linked references.
+         $("remove").onclick = () => {
+            if (!editing || account?.role !== "Administrator") return;
+            const referenced = Object.entries(specs).some(([key, spec]) =>
+               spec.fields.some(
+                  ([field, , source]) =>
+                     source === formPage &&
+                     db[key].some((row) => row[field] === editing.id),
+               ),
+            );
+            if (referenced) {
+               notify("Update linked records before deleting this record.");
+               return;
+            }
+            if (!confirm("Delete " + editing.title + "?")) return;
+            db[formPage] = db[formPage].filter((row) => row.id !== editing.id);
+            const persisted = save();
+            $("editor").close();
+            render();
+            notify(
+               persisted
+                  ? "Record deleted."
+                  : "Record deleted for this session.",
+            );
+         };
+         // Authenticate one of the demo accounts and enter the workspace.
+         $("loginForm").onsubmit = (event) => {
+            event.preventDefault();
+            const username = $("username").value.trim().toLowerCase();
+            if (
+               !Object.hasOwn(accounts, username) ||
+               $("password").value !== demoPassword
+            ) {
+               $("loginError").textContent =
+                  "Enter a valid demo username and password.";
+               $("loginError").hidden = false;
+               return;
+            }
+            account = accounts[username];
+            $("loginError").hidden = true;
+            event.currentTarget.reset();
+            showWorkspace();
+         };
+         // Clear the session state and return to the login screen.
+         $("logout").onclick = () => {
+            account = null;
+            editing = null;
+            $("notice").textContent = "";
+            showWorkspace();
+            $("username").focus();
+         };
+      </script>
+   </body>
+</html>
