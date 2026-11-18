@@ -2,6 +2,28 @@
 
 This is the browser prototype for the CSC 4402 Cybersecurity Incident and Vulnerability Tracking System. The download uses the same HTML, CSS, and JavaScript as the hosted prototype.
 
+## System features
+
+Security Desk gives an IT security team one place to record what happened, identify affected assets, assign investigations, and track fixes.
+
+| Screen | What you can do |
+| --- | --- |
+| **Overview** | See counts of unresolved incidents, critical vulnerabilities that still need remediation, and active assets. Review recent incidents and see the percentage of remediation tasks completed. |
+| **Incidents** | Report a security event, set its severity, link an affected asset, and assign an analyst. Track the investigation from **Open** to **Investigating** to **Resolved**. |
+| **Vulnerabilities** | Log a finding against an asset, rate it **Low**, **Medium**, **High**, or **Critical**, and track it as **Open**, **In progress**, or **Remediated**. |
+| **Assets** | Maintain an inventory of servers, databases, endpoints, and services. Mark assets **Active** or **Retired** and select them when recording incidents and findings. |
+| **Analysts** | Maintain the personnel directory used to assign incidents and remediation work. Each analyst record includes a name and a job role such as **Incident responder** or **Security engineer**. |
+| **Remediation** | Create a task for a vulnerability, assign it to an analyst, and track it as **Open**, **In progress**, or **Completed**. |
+| **Reports** | Review unresolved incidents, critical vulnerabilities that still need remediation, and completed tasks as a share of all remediation tasks. Reports update as demo records change. |
+
+The five record screens support searching by record ID, name or title, and linked names where available. Status and severity filters appear where those fields apply. Administrators can add, edit, and delete records. The demo blocks deletion of a record while other records still reference it.
+
+The sign-in screen demonstrates three levels of access. **Administrators** manage all five record screens and assign work. **Security analysts** can report incidents, log vulnerabilities, and change the status of their assigned incidents and remediation tasks. **Viewers** can browse, search, and filter records and read reports.
+
+### Example workflow
+
+Sign in as **Administrator**, add a vulnerability linked to an asset, and create a remediation task for it. Assign that task to **Maya Chen**. Log out and sign in as **Security analyst** to mark the task **Completed**. Open **Reports** to see the updated remediation count.
+
 ## Run on Windows
 
 1. Right-click the ZIP in File Explorer and choose **Extract All**.
